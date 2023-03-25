@@ -8,7 +8,7 @@ const setupInput = function(conn) {
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
   stdin.resume();
-
+  // user input
   const handleUserInput = function() {
     stdin.on("data", (key) => {
       // \u0003 maps to ctrl+c input to quit the program
@@ -16,50 +16,30 @@ const setupInput = function(conn) {
         process.exit();
       }
     });
-  
+    // move snake according to user key presses
     stdin.on("data", (key) => {
       if (key === 'w') {
         connection.write("Move: up");
-      }
-    });
-  
-    stdin.on("data", (key) => {
-      if (key === 'a') {
+      } else if (key === 'a') {
         connection.write("Move: left");
-      }
-    });
-  
-    stdin.on("data", (key) => {
-      if (key === 's') {
+      } else if (key === 's') {
         connection.write("Move: down");
-      }
-    });
-  
-    stdin.on("data", (key) => {
-      if (key === 'd') {
+      } else if (key === 'd') {
         connection.write("Move: right");
       }
     });
-
+    // canned messages
     stdin.on("data", (key) => {
       if (key === '1') {
         connection.write("Say: How dare you!?");
-      }
-    });
-
-    stdin.on("data", (key) => {
-      if (key === '2') {
+      } else if (key === '2') {
         connection.write("Say: The day is mine!");
-      }
-    });
-  
-    stdin.on("data", (key) => {
-      if (key === '3') {
+      } else if (key === '3') {
         connection.write("Say: Good luck!");
       }
     });
   };
-  
+
   stdin.on("data", handleUserInput);
   return stdin;
 };
