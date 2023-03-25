@@ -44,12 +44,28 @@ const setupInput = function(conn) {
         connection.write("Move: right");
       }
     });
+
+    stdin.on("data", (key) => {
+      if (key === '1') {
+        connection.write("Say: How dare you!?");
+      }
+    });
+
+    stdin.on("data", (key) => {
+      if (key === '2') {
+        connection.write("Say: The day is mine!");
+      }
+    });
   
+    stdin.on("data", (key) => {
+      if (key === '3') {
+        connection.write("Say: Good luck!");
+      }
+    });
   };
   
   stdin.on("data", handleUserInput);
   return stdin;
 };
-
 
 module.exports = { setupInput };
