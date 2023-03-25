@@ -11,7 +11,7 @@ const setupInput = function(conn) {
 
   const handleUserInput = function() {
     stdin.on("data", (key) => {
-      // \u0003 maps to ctrl+c input
+      // \u0003 maps to ctrl+c input to quit the program
       if (key === '\u0003') {
         process.exit();
       }
@@ -19,28 +19,24 @@ const setupInput = function(conn) {
   
     stdin.on("data", (key) => {
       if (key === 'w') {
-        // console.log("Move: up");
         connection.write("Move: up");
       }
     });
   
     stdin.on("data", (key) => {
       if (key === 'a') {
-        // console.log("Move: left");
         connection.write("Move: left");
       }
     });
   
     stdin.on("data", (key) => {
       if (key === 's') {
-        // console.log("Move: down");
         connection.write("Move: down");
       }
     });
   
     stdin.on("data", (key) => {
       if (key === 'd') {
-        // console.log("Move: right");
         connection.write("Move: right");
       }
     });
